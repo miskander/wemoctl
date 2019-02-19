@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+import argparse
+
+from commands import PowerCommand
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Controls Belkin Wemo Devices')
+    subparsers = parser.add_subparsers(dest='cmd', help='sub-command help')
+    power_subparser = subparsers.add_parser('power', aliases=['po'], help='Controls device power')
+    power_subparser.add_argument('--device', required=True, help='selects the device to control')
+    power_subparser.add_argument('state', choices=['on', 'off'], help='the new power state')
+
+    return parser.parse_args()
+
+
+def get_command(args):
+    cmd = None
+    if args.cmd == 'power' or args.cmd == 'po':
+        cmd = PowerCommand(args.device, args.state)
+    return cmd
+
+
+def main():
+    args = parse_args()
+    cmd = get_command(args)
+    if cmd:
+        cmd.execute()
+
+
+if __name__ == "__main__":
+    main()
+

@@ -9,13 +9,14 @@ class NoSuchDeviceError(Exception):
 def get_device(device_name):
     device = None
 
-    for attempt in range(3):
+    for attempt in range(1, 4):
         devices = pywemo.discover_devices()
 
-        for d in devices:
-            if d.name.lower() == device_name.lower():
-                device = d
-                break
+        if devices:
+            for d in devices:
+                if d.name.lower() == device_name.lower():
+                    device = d
+                    break
 
         if device:
             break

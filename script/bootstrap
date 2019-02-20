@@ -6,6 +6,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 cd "$DIR"
 
 export PIPENV_VENV_IN_PROJECT=1
-export PIPENV_CACHE_DIR="${DIR}/vendor/cache"
 
 pipenv --site-packages sync --dev

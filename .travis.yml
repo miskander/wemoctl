@@ -2,6 +2,7 @@ language: python
 python:
  - "3.7-dev"
 install:
+ - pip install pipenv
  - script/bootstrap
 script:
  - pytest

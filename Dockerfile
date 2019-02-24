@@ -1,4 +1,4 @@
-FROM python:3.7-stretch
+FROM python:3.6-stretch
 LABEL maintainer="John Ruiz <jruiz@johnruiz.com>"
 
 RUN pip install pipenv pytest flake8 && \

@@ -43,3 +43,5 @@ class PowerCommand(object):
 
         if self.state == 'off':
             device.off()
+
+        return 0

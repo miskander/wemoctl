@@ -2,7 +2,7 @@
 
 import argparse
 
-from commands import PowerCommand
+from commands import PowerCommand, NoSuchDeviceError
 
 
 def parse_args():
@@ -26,7 +26,10 @@ def main():
     args = parse_args()
     cmd = get_command(args)
     if cmd:
-        cmd.execute()
+        try:
+            return cmd.execute()
+        except NoSuchDeviceError as nsd:
+            print(nsd.message)
 
 
 if __name__ == "__main__":

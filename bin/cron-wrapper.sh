@@ -24,7 +24,7 @@ else
 fi
 
 # ensure that we have the version of the docker image we want
-docker pull jar349/wemoctl:$WEMOCTL_VERSION
+docker pull jar349/wemoctl:$WEMOCTL_VERSION 2>&1 > /dev/null
 
 OUTPUT=$($DOCKER run --rm --network host jar349/wemoctl:latest pipenv run wemoctl power --device "$DEVICE" $STATE 2>&1) && rc=$? || rc=$?
 
@@ -34,3 +34,4 @@ if [[ $rc != 0 ]]; then
 fi
 
 exit $rc
+

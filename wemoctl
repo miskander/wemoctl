@@ -30,6 +30,13 @@ def main():
             return cmd.execute()
         except NoSuchDeviceError as nsd:
             print(nsd.message)
+            return 1
+        except Exception as ex:
+            print(ex)
+            return 1
+    else:
+        print("No such command: " + args.cmd)
+        return 1
 
 
 if __name__ == "__main__":
